@@ -48,7 +48,7 @@ def make_env():
                                  width=80, height=80, grayscale=True)
     return e
 env = make_env()
-env = wrappers.Monitor(env, './experiment', force=True)
+#env = wrappers.Monitor(env, './experiment', force=True)
 
 NOOP, FORWARD, TURN_R, TURN_L  = 0, 1, 2, 3
 VALID_ACTIONS = [0, 1, 2, 3]
@@ -144,7 +144,7 @@ def deep_q_learning(sess,
                     update_target_estimator_every=500,
                     epsilon_decay_steps=300000,
                     discount_factor=0.99,
-                    epsilon_start=0.001,
+                    epsilon_start=0.9,
                     epsilon_end=0.001,
                     batch_size=32):
 
@@ -238,4 +238,4 @@ with tf.Session() as sess:
                     q_estimator=q_estimator,
                     target_estimator=target_estimator,
                     saver=saver,
-		    num_episodes=500)
+		    num_episodes=1000)
